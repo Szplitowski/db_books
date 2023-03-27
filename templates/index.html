@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Books</title>
+	<style>
+		nav a {
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<a href="{{ url_for('index') }}">Books</a>
+		<a href="{{ url_for('add') }}">Add Book</a>
+		<a href="{{ url_for('edit') }}">Edit Book</a>
+		<a href="{{ url_for('borrowed') }}">Borrowed Books</a>
+	</nav>
+	<h1>Books</h1>
+	<ul>
+		{% for book in books %}
+		<li>{{ book['book_title'] }} by {{ book['book_author'] }} {% if book['already_read'] %}(Already Read){% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+</body>
+
+</html>

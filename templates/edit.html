@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Edit Book</title>
+	<style>
+		nav a {
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<a href="{{ url_for('index') }}">Books</a>
+		<a href="{{ url_for('add') }}">Add Book</a>
+		<a href="{{ url_for('edit') }}">Edit Book</a>
+		<a href="{{ url_for('borrowed') }}">Borrowed Books</a>
+	</nav>
+	<h1>Edit Book</h1>
+	<h2>Books</h2>
+	<ul>
+		{% for book in books %}
+		<li>{{ book['book_title'] }} by {{ book['book_author'] }} {% if book['already_read'] %}(Already Read){% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	<h2>Edit Book</h2>
+	<form method="post">
+		<label for="id">Book</label>
+		<select id="id" name="id">
+			{% for book in books %}
+			<option value="{{ book['id'] }}">{{ book['book_title'] }}</option>
+			{% endfor %}
+		</select>
+		<label for="title">Title</label>
+		<input type="text" id="title" name="title" required>
+		<label for="author">Author</label>
+		<input type="text" id="author" name="author" required>
+		<label for="read">Already Read</label>
+		<input type="checkbox" id="read" name="read">
+		<input type="submit" value="Save">
+	</form>
+</body>
+
+</html>

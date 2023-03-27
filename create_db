@@ -1,0 +1,15 @@
+import sqlite3
+conn = sqlite3.connect('books.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, book_title TEXT, book_author TEXT, already_read BOOLEAN)''')
+c.execute('''CREATE TABLE IF NOT EXISTS borrowed_books (id INTEGER PRIMARY KEY, book_title TEXT, borrowed BOOLEAN)''')
+books = [(1, 'Book1', 'Author1', True),
+         (2, 'Book2', 'Author2', False),
+         (3, 'Book3', 'Author3', False)]
+c.executemany('INSERT INTO books VALUES (?,?,?,?)', books)
+borrowed_books = [(1, 'Book1', False),
+                  (2, 'Book2', False),
+                  (3, 'Book3', True)]
+c.executemany('INSERT INTO borrowed_books VALUES (?,?,?)', borrowed_books)
+conn.commit()
+conn.close()

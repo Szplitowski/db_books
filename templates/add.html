@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Add Book</title>
+	<style>
+		nav a {
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<a href="{{ url_for('index') }}">Books</a>
+		<a href="{{ url_for('add') }}">Add Book</a>
+		<a href="{{ url_for('edit') }}">Edit Book</a>
+		<a href="{{ url_for('borrowed') }}">Borrowed Books</a>
+	</nav>
+	<h1>Add Book</h1>
+	<form method="post">
+		<label for="title">Title</label>
+		<input type="text" id="title" name="title" required>
+		<label for="author">Author</label>
+		<input type="text" id="author" name="author" required>
+		<label for="read">Already Read</label>
+		<input type="checkbox" id="read" name="read">
+		<input type="submit" value="Add">
+	</form>
+</body>
+
+</html>

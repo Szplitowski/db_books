@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Borrowed Books</title>
+	<style>
+		nav a {
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<a href="{{ url_for('index') }}">Books</a>
+		<a href="{{ url_for('add') }}">Add Book</a>
+		<a href="{{ url_for('edit') }}">Edit Book</a>
+		<a href="{{ url_for('borrowed') }}">Borrowed Books</a>
+	</nav>
+	<h1>Borrowed Books</h1>
+	<form method="post">
+		<label for="id">Book</label>
+		<select id="id" name="id">
+			{% for book in borrowed_books %}
+			<option value="{{ book['id'] }}">{{ book['book_title'] }}</option>
+			{% endfor %}
+		</select>
+		<label for="borrowed">Borrowed</label>
+		<input type="checkbox" id="borrowed" name="borrowed">
+		<input type="submit" value="Save">
+	</form>
+	<h2>Books</h2>
+	<ul>
+		{% for book in books %}
+		<li>{{ book['book_title'] }} by {{ book['book_author'] }}</li>
+		{% endfor %}
+	</ul>
+	<h2>Borrowed Books</h2>
+	<ul>
+		{% for book in borrowed_books %}
+		{% if book['borrowed'] %}
+		<li>{{ book['book_title'] }}</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</body>
+
+</html>
